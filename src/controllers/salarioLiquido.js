@@ -1,17 +1,23 @@
 const salarioLiquidoModel = require('../models/salarioLiquido')
 
+const getAll = () => {
+    return salarioLiquidoModel.findAll()
+}
+
 const getSalarioById = (id) => {
-    salarioLiquidoModel.findAll().then(
-        (result) => {
-            console.log('opa')
-            console.log(result)
-        },
-        (error) => {
-            console.log(error)
-        }
-    )
+    const condition = {where: {id:id}}
+    return salarioLiquidoModel.findOne(condition)
+    
+}
+
+const setSalario = (preco) => {
+    return salarioLiquidoModel.create({
+        preco:preco
+    })
 }
 
 module.exports = {
-    getSalarioById: getSalarioById()
+    getAll,
+    getSalarioById,
+    setSalario
 }
